@@ -1,17 +1,17 @@
 using MarketplaceAPI.Models; //User //AuthUser
 using Microsoft.EntityFrameworkCore;
 
-namespace MarketplaceAPI.Models; //UserContext
+namespace MarketplaceAPI.Models.User; //UserContext
 
 
 public class UserContext(DbContextOptions<UserContext> options) : DbContext(options){
-    public DbSet<User> Users {get; set;}
+    public DbSet<UserDTO> Users {get; set;}
     public DbSet<AuthUser> AuthUsers {get; set;}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>()
+        modelBuilder.Entity<UserDTO>()
         .HasMany(a => a.Auths)
-        .WithOne(b => b.User).HasForeignKey(c => c.UserId);
+        .WithOne(b => b.UserProfile).HasForeignKey(c => c.UserId);
     }
 }

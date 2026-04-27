@@ -1,14 +1,14 @@
 using MarketplaceAPI.Models;
-namespace MarketplaceAPI.Models;
+namespace MarketplaceAPI.Models.User;
 
-public class User
+public class UserProfile
 {
-    public long Id {get; private set;}
+    public long Id {get; set;}
     public string? Username {get; set;} = "Your Username";
     public Role Role {get; set;}
     public DateTime Creat_at {get; private set;} = DateTime.Today;
-    public ICollection<AuthUser> Auths {get; set;} = new List<AuthUser>();
-    public string? SecretInternal {get; set;}
+    public ICollection<AuthUser> Auths {get; set;} = [];
+    public string? SecretInternal {get; private set;} = "007";
 }
 
 public enum Role
